@@ -1,7 +1,7 @@
 """
-This program will store a user's reading list and make reading suggestions from it based on genres they supply with the
-book titles.
+Classes used in the application.
 """
+
 
 class BOOK:
 	def __init__(self, title, genres, author):  # Assuming genres can be a list of genres
@@ -12,7 +12,8 @@ class BOOK:
 	def __str__(self):
 		return f"{self.title}, genres = '{', '.join(self.genres)}', author = '{self.author}"
 
-class Library:
+
+class LIBRARY:
 	def __init__(self):
 		self.books = []  # This will store instances of BOOK
 
@@ -34,5 +35,3 @@ class Library:
 		found_books = [book for book in self.books if genre in book.genres]
 		for book in found_books:
 			print(book)
-
-
