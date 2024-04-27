@@ -16,7 +16,7 @@ def lib_ui():
 
 # Here we will check to see if a mistake was made, or confirm continuing
 def second_attempt():
-	attempt_msg = input("Would you like to exit the Library, press q to quit and any other key to continue")
+	attempt_msg = input("Would you like to exit the Library, press q to quit and any other key to start again")
 	if attempt_msg.lower() == "q":
 		exit()
 	else:
@@ -54,7 +54,7 @@ def add_new_genre(new_genres):
 	print(new_genres)
 	more_genres = input("Would you like to add an additional genre? y for yes, n for no")
 	if more_genres.lower() == "y":
-		return  input("Enter the genre")
+		return input("Enter the genre")  # TODO Need this to go somewhere
 	if more_genres.lower() == "n":
 		return book_author()
 
@@ -63,6 +63,17 @@ def book_author():
 	pass
 
 
+# TODO Complete author adding
+# TODO View record being creted
+# TODO Make edits
+# TODO add to the library
+# TODO Check for duplicates
+# TODO Am I using the Class BOOK and LIBRARY correctly
+
 
 def book_search():
 	pass
+# TODO Search/filter by title
+# TODO Search/filter by Author
+# TODO Search/filter by Genre
+# TODO Search by regular expression
