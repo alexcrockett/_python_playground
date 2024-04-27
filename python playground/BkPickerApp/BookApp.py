@@ -39,4 +39,7 @@ def title_check(title):
 
 
 def book_genre():
-	genre = LibraryClasses.BOOK.genre = input("Please enter a book genre")
+	genres = LibraryClasses.BOOK.genres = input("Please enter the book's genre")
+	return add_genre
+
+def add_genre(genres):
