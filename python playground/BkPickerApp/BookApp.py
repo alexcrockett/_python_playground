@@ -1,17 +1,20 @@
+# We are going to need to reference the classes and submit to the list
 import LibraryClasses
 import BkList
 
 
+# Here we are going to start the interactiion by asking what is required by the user
 def lib_ui():
 	welcome_msg = input("Welcome to the Library, press 1 to add a book and 2 search for a book")
 	if welcome_msg == "1":
 		return book_title()
 	if welcome_msg == "2":
-		return
+		return book_search()
 	else:
 		second_attempt()
 
 
+# Here we will check to see if a mistake was made, or confirm continuing
 def second_attempt():
 	attempt_msg = input("Would you like to exit the Library, press q to quit and any other key to continue")
 	if attempt_msg.lower() == "q":
@@ -20,16 +23,18 @@ def second_attempt():
 		lib_ui()
 
 
+# The user starts the book submission process and adds a book title
 def book_title():
 	title = LibraryClasses.BOOK.title = input("Please enter a book title")
 	# confirm the book title and then move to genre
 	return title_check(title)
 
 
+# We will check for typos
 def title_check(title):
 	check_title = input("You entered: " + title + ". Would you like to proceed? y for yes, n for no")
 	if check_title.lower() == "y":
-		return book_genre()
+		return add_book_genre()
 	else:
 		print("Press 1 to start again and press q to quit")
 		if check_title.lower() == "q":
@@ -38,8 +43,26 @@ def title_check(title):
 			book_title()
 
 
-def book_genre():
-	genres = LibraryClasses.BOOK.genres = input("Please enter the book's genre")
-	return add_genre
+# We will now allow the user to add a genre to the book
+def add_book_genre(new_genres):
+	new_genres = LibraryClasses.BOOK.genres = input("Please enter the book's genre")
+	return add_new_genre(new_genres)
 
-def add_genre(genres):
+
+# We will confirm the genre and check to see if an additional genre is needed
+def add_new_genre(new_genres):
+	print(new_genres)
+	more_genres = input("Would you like to add an additional genre? y for yes, n for no")
+	if more_genres.lower() == "y":
+		return  input("Enter the genre")
+	if more_genres.lower() == "n":
+		return book_author()
+
+
+def book_author():
+	pass
+
+
+
+def book_search():
+	pass
