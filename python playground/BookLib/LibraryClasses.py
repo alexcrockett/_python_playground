@@ -1,6 +1,7 @@
 """
 Classes used in the application.
 """
+import json
 
 
 class BOOK:
@@ -12,25 +13,38 @@ class BOOK:
 	def __str__(self):
 		return f"{self.title}, genres = '{', '.join(self.genres)}', author = '{self.author}"
 
+	def to_dict(self):
+		return {'title': self.title, 'genres': self.genres, 'author': self.author}
 
-class LIBRARY:
-	def __init__(self):
-		self.books = []  # This will store instances of BOOK
+
+class LIBRARIAN:
+	def __init__(self, db_path='BookDatabase.json'):
+		self.books = []
+		self.db_path = db_path
+		self.load_books()
 
 	def add_book(self, title, genres, author):
-		# Check for duplicates
 		if not any(book.title == title and book.author == author for book in self.books):
 			new_book = BOOK(title, genres, author)
 			self.books.append(new_book)
+			self.save_books()  # Save the updated books list to file
+			print("Book added successfully.")
 		else:
 			print("This book is already in your library.")
 
-	def list_books(self):
-		# Print all books in the library
-		for book in self.books:
-			print(book)
+	def save_books(self):
+		with open(self.db_path, 'w') as f:
+			json.dump([book.to_dict() for book in self.books], f, indent=4)
 
-	def find_books_by_genre(self, genre):
+	def load_books(self):
+		try:
+			with open(self.db_path, 'r') as f:
+				books_data = json.load(f)
+				self.books = [BOOK(**book) for book in books_data]
+		except FileNotFoundError:
+			self.books = []
+
+	def find_books_by_genre(self, genre): # TODO I will need to review this function
 		# Find and print books by specific genre
 		found_books = [book for book in self.books if genre in book.genres]
 		for book in found_books:
