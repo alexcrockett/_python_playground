@@ -52,18 +52,32 @@ def add_book_genre(new_genres):
 # We will confirm the genre and check to see if an additional genre is needed
 def add_new_genre(new_genres):
 	print(new_genres)
-	more_genres = input("Would you like to add an additional genre? y for yes, n for no")
+	more_genres = LibraryClasses.BOOK.genres = input("Would you like to add an additional genre? y for yes, n for no")
 	if more_genres.lower() == "y":
 		return input("Enter the genre")  # TODO Need this to go somewhere
-	if more_genres.lower() == "n":
+	else:
 		return book_author()
 
 
+# TODO else what?
+
 def book_author():
-	pass
+	new_author = LibraryClasses.BOOK.author = input("Please enter the book's author")
+	return check_author(new_author)
 
 
-# TODO Complete author adding
+def check_author(new_author):
+	author_check = input("You entered" + new_author + "Is this correct, y for yes, n for no")
+	if author_check.lower() == "y":
+		return new_record_display(LibraryClasses.BOOK, LibraryClasses.LIBRARY)
+	else:
+		book_author()
+
+
+def new_record_display(title, genres, author):
+	new_book = LibraryClasses.BOOK(title, genres, author)
+	print("Your book entry is " + new_book.title + " by " + new_book.author + " - " + new_book.genres)
+
 # TODO View record being creted
 # TODO Make edits
 # TODO add to the library
