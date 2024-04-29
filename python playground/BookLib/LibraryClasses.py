@@ -1,5 +1,5 @@
 import json
-
+import LibraryFunctions
 
 class BOOK:
 	def __init__(self, title, genres, author):  # Assuming genres can be a list of genres
