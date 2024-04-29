@@ -1,6 +1,3 @@
-"""
-Classes used in the application.
-"""
 import json
 
 
@@ -28,7 +25,7 @@ class LIBRARIAN:
 			new_book = BOOK(title, genres, author)
 			self.books.append(new_book)
 			self.save_books()  # Save the updated books list to file
-			print("Book added successfully.")
+			print(title + "  added successfully!")
 		else:
 			print("This book is already in your library.")
 
@@ -47,5 +44,11 @@ class LIBRARIAN:
 	def find_books_by_genre(self, genre): # TODO I will need to review this function
 		# Find and print books by specific genre
 		found_books = [book for book in self.books if genre in book.genres]
+		for book in found_books:
+			print(book)
+
+	def find_books_by_title(self, title):
+		# Find and print books by specific title
+		found_books = [book for book in self.books if title in book.genres]
 		for book in found_books:
 			print(book)

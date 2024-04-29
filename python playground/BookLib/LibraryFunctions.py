@@ -28,10 +28,38 @@ def add_new_book():
 
 	if confirmation.lower() == 'y':
 		LibraryClasses.LIBRARIAN.add_book(title=title, genres=genres, author=author)
-		print(title + "  added successfully!")
 	else:
 		print("Book addition cancelled.")
 
 
 def book_search():
+	search_term = input(
+		"For genre, press 1. To search titles, press 2. For author search, press 3. For all books, press 'A'")
+	if search_term.lower() == "1":
+		return genre_search()
+	if search_term.lower() == "2":
+		return title_search()
+	if search_term.lower() == "3":
+		return author_search()
+	if search_term.upper() == "A":
+		return LibraryClasses.LIBRARIAN.load_books()
+	else:
+		try_again_msg = input("I didn't get that. To exit the Library, press q, or any other key to start again")
+		if try_again_msg.lower() == "q":
+			exit()
+		else:
+			book_search()
+
+
+def genre_search():
+	genre_input = input("Please enter a genre: ")
+	return LibraryClasses.LIBRARIAN.find_books_by_genre(genre_input)
+
+
+def title_search():
+	title_input = input("Please enter a title: ")
+	return LibraryClasses.LIBRARIAN.find_books_by_title(title_input)
+
+
+def author_search():
 	pass
