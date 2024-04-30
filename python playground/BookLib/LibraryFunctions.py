@@ -33,8 +33,7 @@ def add_new_book():
 
 
 def book_search():
-	search_term = input(
-		"For genre, press 1. To search titles, press 2. For author search, press 3. For all books, press 'A'")
+	search_term = input("For genre, press 1. To search titles, press 2. For author search, press 3. For all books, press 'A'")
 	if search_term.lower() == "1":
 		return genre_search()
 	if search_term.lower() == "2":
@@ -64,7 +63,11 @@ def title_search():
 def author_search():
 	author = input("Please enter an author: ")
 	return LibraryClasses.LIBRARIAN.find_books_by_author(author)
-
+	
 
 def check_complete():
-	pass
+	user_iteration = input("Is there anything else I can help with? Press any key to start again or 'q' to exit the library.")
+	if user_iteration.lower() != 'q':
+		return lib_ui()
+	else:
+		exit()
