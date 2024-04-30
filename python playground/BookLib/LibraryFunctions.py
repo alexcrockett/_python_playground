@@ -62,5 +62,9 @@ def title_search():
 
 
 def author_search():
+	author = input("Please enter an author: ")
+	return LibraryClasses.LIBRARIAN.find_books_by_author(author)
 
+
+def check_complete():
 	pass

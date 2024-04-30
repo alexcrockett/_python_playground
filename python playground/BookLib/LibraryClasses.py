@@ -52,3 +52,7 @@ class LIBRARIAN:
 		found_books = [book for book in self.books if title in book.genres]
 		for book in found_books:
 			print(book)
+
+	def find_books_by_author(self, author):
+		found_books = [book for book in self.books if author in book.author]
+		for book in found_books: print(book)
