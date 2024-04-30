@@ -1,5 +1,4 @@
 import json
-import LibraryFunctions
 
 class BOOK:
 	def __init__(self, title, genres, author):  # Assuming genres can be a list of genres
@@ -55,4 +54,5 @@ class LIBRARIAN:
 
 	def find_books_by_author(self, author):
 		found_books = [book for book in self.books if author in book.author]
-		for book in found_books: print(book)
+		for book in found_books: 
+			print(book)

@@ -1,5 +1,7 @@
 # We are going to need to reference the classes and submit to the list
+
 import LibraryClasses
+from LibraryClasses import LIBRARIAN
 
 
 # Here we are going to start the interaction by asking what is required by the user
@@ -71,3 +73,18 @@ def check_complete():
 		return lib_ui()
 	else:
 		exit()
+
+
+def main():
+	library = LIBRARIAN()
+	lib_ui()
+	add_new_book()
+	book_search()
+	genre_search()
+	title_search()
+	author_search()
+	check_complete()
+
+
+if __name__ == "__main__":
+    main()
