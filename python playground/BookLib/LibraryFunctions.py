@@ -1,7 +1,11 @@
-# We are going to need to reference the classes and submit to the list
-
 import LibraryClasses
 from LibraryClasses import LIBRARIAN
+librarian = LIBRARIAN()
+
+
+def main():
+	LIBRARIAN()
+	lib_ui()
 
 
 # Here we are going to start the interaction by asking what is required by the user
@@ -25,25 +29,22 @@ def add_new_book():
 	genres = input("Please enter book genres (comma-separated): ").split(',')
 	author = input("Please enter the book's author:  ")
 
-	new_book = LibraryClasses.BOOK(title, genres, author)
-	confirmation = input(f"You entered: {new_book}. Add to library? (y/n):  ")
-
+	confirmation = input(f"Add {title} by {author} to the library? (y/n): ")
 	if confirmation.lower() == 'y':
-		LibraryClasses.LIBRARIAN.add_book(title=title, genres=genres, author=author)
+		librarian.add_book(title=title, genres=genres, author=author)
 	else:
 		print("Book addition cancelled.")
 
 
 def book_search():
-	search_term = input("For genre, press 1. To search titles, press 2. For author search, press 3. For all books, press 'A':  ")
+	search_term = input(
+		"For genre, press 1. To search titles, press 2. For author search, press 3:  ")
 	if search_term.lower() == "1":
 		return genre_search()
-	if search_term.lower() == "2":
+	elif search_term.lower() == "2":
 		return title_search()
-	if search_term.lower() == "3":
+	elif search_term.lower() == "3":
 		return author_search()
-	if search_term.upper() == "A":
-		return LibraryClasses.LIBRARIAN.load_books()
 	else:
 		try_again_msg = input("I didn't get that. To exit the Library, press q, or any other key to start again:  ")
 		if try_again_msg.lower() == "q":
@@ -54,37 +55,27 @@ def book_search():
 
 def genre_search():
 	genre_input = input("Please enter a genre:  ")
-	return LibraryClasses.LIBRARIAN.find_books_by_genre(genre_input)
+	return librarian.find_books_by_genre(genre_input)
 
 
 def title_search():
 	title_input = input("Please enter a title:  ")
-	return LibraryClasses.LIBRARIAN.find_books_by_title(title_input)
+	return librarian.find_books_by_title(title_input)
 
 
 def author_search():
 	author = input("Please enter an author:  ")
-	return LibraryClasses.LIBRARIAN.find_books_by_author(author)
-	
+	return librarian.find_books_by_author(author)
+
 
 def check_complete():
-	user_iteration = input("Is there anything else I can help with? Press any key to start again or 'q' to exit the library:  ")
+	user_iteration = input(
+		"Is there anything else I can help with? Press any key to start again or 'q' to exit the library:  ")
 	if user_iteration.lower() != 'q':
 		return lib_ui()
 	else:
 		exit()
 
 
-def main():
-	library = LIBRARIAN()
-	lib_ui()
-	add_new_book()
-	book_search()
-	genre_search()
-	title_search()
-	author_search()
-	check_complete()
-
-
 if __name__ == "__main__":
-    main()
+	main()

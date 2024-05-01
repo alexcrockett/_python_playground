@@ -1,16 +1,21 @@
 import json
 
+
 class BOOK:
-	def __init__(self, title, genres, author):  # Assuming genres can be a list of genres
+	def __init__(self, title, genres, author):
 		self.title = title
-		self.genres = genres  # Changed to list handling
+		self.genres = genres
 		self.author = author
+
+	def to_dict(self):
+		return {
+			'title': self.title,
+			'genres': self.genres,
+			'author': self.author
+		}
 
 	def __str__(self):
 		return f"{self.title}, genres = '{', '.join(self.genres)}', author = '{self.author}"
-
-	def to_dict(self):
-		return {'title': self.title, 'genres': self.genres, 'author': self.author}
 
 
 class LIBRARIAN:
@@ -39,8 +44,12 @@ class LIBRARIAN:
 				self.books = [BOOK(**book) for book in books_data]
 		except FileNotFoundError:
 			self.books = []
+			print(f"No existing book database found at {self.db_path}, starting with an empty library.")
+		except json.JSONDecodeError:
+			self.books = []
+			print(f"Corrupted or empty JSON in {self.db_path}, starting with an empty library.")
 
-	def find_books_by_genre(self, genre): # TODO I will need to review this function
+	def find_books_by_genre(self, genre):
 		# Find and print books by specific genre
 		found_books = [book for book in self.books if genre in book.genres]
 		for book in found_books:
@@ -54,5 +63,5 @@ class LIBRARIAN:
 
 	def find_books_by_author(self, author):
 		found_books = [book for book in self.books if author in book.author]
-		for book in found_books: 
+		for book in found_books:
 			print(book)
