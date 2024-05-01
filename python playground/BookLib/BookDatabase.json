@@ -1,18 +1,18 @@
 [
     {
-        "title": "t",
+        "title": "test",
         "genres": [
-            "t"
+            "test"
         ],
-        "author": "t"
+        "author": "test"
     },
     {
         "title": "Introduction to Mathematical Philosophy",
         "genres": [
             "mathematics",
-            " philosophy",
+            " logic",
             " set theory",
-            " logic"
+            " philosophy"
         ],
         "author": "Bertrand Russell"
     }

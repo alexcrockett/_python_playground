@@ -6,6 +6,16 @@ librarian = LIBRARIAN()
 def main():
 	LIBRARIAN()
 	lib_ui()
+	check_complete()
+
+
+def check_complete():
+	user_iteration = input(
+		"Is there anything else I can help with? Press any key to start again or 'q' to exit the library:  ")
+	if user_iteration.lower() != 'q':
+		return lib_ui()
+	else:
+		exit()
 
 
 # Here we are going to start the interaction by asking what is required by the user
@@ -25,15 +35,17 @@ def lib_ui():
 
 # Submission of a book record
 def add_new_book():
-	title = input("Please enter the book title:  ")
-	genres = input("Please enter book genres (comma-separated): ").split(',')
-	author = input("Please enter the book's author:  ")
+	while True:
+		title = input("Please enter the book title:  ")
+		genres = input("Please enter book genres (comma-separated): ").split(',')
+		author = input("Please enter the book's author:  ")
 
-	confirmation = input(f"Add {title} by {author} to the library? (y/n): ")
-	if confirmation.lower() == 'y':
-		librarian.add_book(title=title, genres=genres, author=author)
-	else:
-		print("Book addition cancelled.")
+		confirmation = input(f"Add {title} by {author} to the library? (y/n): ")
+		if confirmation.lower() == 'y':
+			librarian.add_book(title=title, genres=genres, author=author)
+		else:
+			print("Book addition cancelled.")
+		return check_complete()
 
 
 def book_search():
