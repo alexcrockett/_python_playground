@@ -53,7 +53,7 @@ class LIBRARIAN:
 		# Find and print books by specific genre
 		found_books = [book for book in self.books if genre in book.genres]
 		for book in found_books:
-			print(book)
+			return [book for book in self.books if genre.lower() in book.genres]
 
 	def find_books_by_title(self, title):
 		# Find and print books by specific title
