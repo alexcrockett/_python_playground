@@ -82,12 +82,30 @@ def genre_results(genre_input):
 
 def title_search():
 	title_input = input("Please enter a title:  ")
-	return librarian.find_books_by_title(title_input)
+	title_results(title_input)
+
+
+def title_results(title_input):
+	found_books = librarian.find_books_by_genre(title_input)
+	if found_books:
+		for book in found_books:
+			print(book)
+	else:
+		print("No books found with the title:", title_input)
 
 
 def author_search():
-	author = input("Please enter an author:  ")
-	return librarian.find_books_by_author(author)
+	author_input = input("Please enter an author:  ")
+	author_results(author_input)
+
+
+def author_results(author_input):
+	found_books = librarian.find_books_by_genre(author_input)
+	if found_books:
+		for book in found_books:
+			print(book)
+	else:
+		print("No books found with the title:", author_input)
 
 
 if __name__ == "__main__":
