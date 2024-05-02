@@ -11,9 +11,16 @@
         "genres": [
             "mathematics",
             " logic",
-            " set theory",
-            " philosophy"
+            "set theory",
+            "philosophy"
         ],
         "author": "Bertrand Russell"
+    },
+    {
+        "title": "test",
+        "genres": [
+            "logic"
+        ],
+        "author": "logical test"
     }
 ]

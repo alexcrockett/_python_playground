@@ -1,5 +1,6 @@
 import LibraryClasses
 from LibraryClasses import LIBRARIAN
+
 librarian = LIBRARIAN()
 
 
@@ -66,12 +67,17 @@ def book_search():
 
 
 def genre_search():
-	genre_input = input("Please enter a genre:  ")
-	return librarian.find_books_by_title(genre_input)
+	genre_input = input("Please enter a genre: ")
+	genre_results(genre_input)
 
 
-def genre_results(genre):
-	pass
+def genre_results(genre_input):
+	found_books = librarian.find_books_by_genre(genre_input)
+	if found_books:
+		for book in found_books:
+			print(book)
+	else:
+		print("No books found in the genre:", genre_input)
 
 
 def title_search():
