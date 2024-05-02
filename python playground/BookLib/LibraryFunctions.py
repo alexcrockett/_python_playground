@@ -90,14 +90,5 @@ def author_search():
 	return librarian.find_books_by_author(author)
 
 
-def check_complete():
-	user_iteration = input(
-		"Is there anything else I can help with? Press any key to start again or 'q' to exit the library:  ")
-	if user_iteration.lower() != 'q':
-		return lib_ui()
-	else:
-		exit()
-
-
 if __name__ == "__main__":
 	main()
