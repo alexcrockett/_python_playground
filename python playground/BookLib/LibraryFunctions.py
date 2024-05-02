@@ -67,7 +67,11 @@ def book_search():
 
 def genre_search():
 	genre_input = input("Please enter a genre:  ")
-	return librarian.find_books_by_genre(genre_input)
+	return librarian.find_books_by_title(genre_input)
+
+
+def genre_results(genre):
+	pass
 
 
 def title_search():
