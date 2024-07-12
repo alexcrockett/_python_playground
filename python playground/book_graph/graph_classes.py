@@ -2,19 +2,27 @@
 # If one query yields more than one result an edge should be created between them
 # The LLM should determine the labels for these ad-hoc edges
 
-import _sources
-
 class IMPORTER:
-	# import the dataframe
-	# Parse relevant fields (genres=tags, title, author, etc.)
-	# Assign objects to the correct class
 	def __init__(self):
-	def call_dataframe(self, _sources):
-		from _sources import books_csv_data
-			return book_values(books_csv_data)
+		self.source_path = 'databases/raw_library.csv'
 
-	def book_values(books_csv_data):
-		pass
+	def call_dataframe(self):
+		import pandas as pd
+		books_csv_data = pd.read_csv(self.source_path)
+		return self.book_values(books_csv_data)
+
+	def book_values(self, books_csv_data):
+		books = []
+		for index, row in books_csv_data.iterrows():
+			book = self.parse_values(row)
+			if book:
+				books.append(book)
+		return books
+
+	def parse_values(self, row):
+		if row['type'] == "book":
+			return BOOK(title=row['title'], author=row['author'], genres=row['genres'].split(','))
+		return None
 
 	def import_from_api(self):
 	pass
