@@ -3,23 +3,27 @@
 # The LLM should determine the labels for these ad-hoc edges
 
 import _sources
+
 class IMPORTER:
-	# This class imports from; browser bookmarks, API with books, a dataframe or database
+	# import the dataframe
+	# Parse relevant fields (genres=tags, title, author, etc.)
+	# Assign objects to the correct class
 	def __init__(self):
-	def import_from_dataframe(self):
-		# import the dataframe
-		# Parse relevant fields (genres=tags, title, author, etc.)
-		# Assign objects to the correct class
+	def call_dataframe(self, _sources):
+		from _sources import books_csv_data
+			return book_values(books_csv_data)
+
+	def book_values(books_csv_data):
 		pass
 
 	def import_from_api(self):
-		pass
+	pass
 
 	def import_from_browser(self):
-		pass
+	pass
 
 	def import_from_web(self):
-		pass
+	pass
 
 class MANAGER:
 	# This class assigns imported content via classes (books and bookmarks) to nodes
@@ -52,3 +56,4 @@ class DATABASE:
 class QUERIES:
 	# This class manages queries to the system via an LLM (OpenAI API)
 	def __init__(self):
+
