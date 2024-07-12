@@ -2,10 +2,24 @@
 # If one query yields more than one result an edge should be created between them
 # The LLM should determine the labels for these ad-hoc edges
 
-import _requirements
+import _sources
 class IMPORTER:
 	# This class imports from; browser bookmarks, API with books, a dataframe or database
 	def __init__(self):
+	def import_from_dataframe(self):
+		# import the dataframe
+		# Parse relevant fields (genres=tags, title, author, etc.)
+		# Assign objects to the correct class
+		pass
+
+	def import_from_api(self):
+		pass
+
+	def import_from_browser(self):
+		pass
+
+	def import_from_web(self):
+		pass
 
 class MANAGER:
 	# This class assigns imported content via classes (books and bookmarks) to nodes
