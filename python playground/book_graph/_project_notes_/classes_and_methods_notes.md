@@ -1,6 +1,6 @@
 ## Content
 1. Notes on classes
-   1. [Importer](Class:Importer)
+   1. Importer
    2. Manager
    3. Book
    4. Node
