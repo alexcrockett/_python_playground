@@ -1,20 +1,17 @@
-
-## From Classes
-
-### From BOOK
-title=row['title'],
-author=row['author'],
-authors2=row['authors2'],
-texttype=row['texttype'],
-content=row['content'],
-summary=row['summary'],
-tags=row['tags'],
-genres=row['genres'].split(','),
-category=row['category'],
-ISBN=row['ISBN'],
-ISBN13=row['ISBN13'],
-rating=row['rating'],
-publisher=row['publisher'],
-binding=row['binding'],
-pages=row['pages'],
-date=row['date'],
+### BOOK attributes
+'title'
+'author'
+'authors2'
+'text-type'
+'content'
+'summary'
+'tags'
+'genres'
+'category'
+'ISBN'
+'ISBN13'
+'publisher'
+'binding'
+'pages'
+'text'
+'date-published'
