@@ -1,7 +1,8 @@
 # Building a basic function in Maple
 
-1. [Writing functions](#writing-functions)
-2. [Plugging expressions into equations](#plugging-expressions-into-equations)
+- [Building a basic function in Maple](#building-a-basic-function-in-maple)
+  - [Writing functions](#writing-functions)
+  - [Plugging expressions into equations](#plugging-expressions-into-equations)
 
 ## Writing functions
 
@@ -22,7 +23,7 @@ f:=x^2;
 f:=x^2:
 ```
 
-Let us now say we want to create a single variable function. Let us say out function will be $f(x)=x^3*x+50x$
+Let us now say we want to create a single variable function. Let us say our function will be $f(x)=x^3*x+50x$
 
 We want to tell Maple that we are creating a function $f$ of $x$ such that $f(x)=x^3*x+50x$. We will therefore write:
 
