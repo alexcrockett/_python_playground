@@ -1,0 +1,11 @@
+
+- Python 3.11
+- networkx
+- Pandas
+- requests
+- FastAPI
+- Neo4J
+- Neomodel
+- GraphQL
+- Strawberry
+- Docker
