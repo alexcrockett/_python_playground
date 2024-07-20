@@ -1,11 +1,14 @@
 
 - Python 3.11
-- networkx
-- Pandas
+- import networkx as nx
+-  import numpy as np
+-  import pandas as pd
+-  import neomodel as nw
+-  import strawberry
+-  import os
+ - from openai import OpenAI
+-  from neo4j import GraphDatabase
 - requests
 - FastAPI
 - Neo4J
-- Neomodel
-- GraphQL
-- Strawberry
 - Docker
