@@ -1,0 +1,23 @@
+
+# Overview of the application
+
+This program is really an experiment the goal of which will be to: 
+
+- Import a list of books 
+- Import book data
+- Store the information in a graph 
+- Provide an interface to query the data
+
+In addition, an LLM will be used to support understanding the queries made to the application.
+
+The program will be structured approximately as follows:
+
+- Interface
+- LLM
+- GraphQL
+- Python 
+  - neomodel
+    - Interacts with neo4j
+  - strawberry
+    - interacts with GraphQL
+- Neo4J
