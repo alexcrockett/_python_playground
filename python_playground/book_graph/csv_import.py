@@ -23,9 +23,12 @@ class CSV:
 			'Number of Pages',
 			'Original Publication Year',
 			'Summary',
-			'Tags',
+			'Topics',
 			'Genres',
 			'Text',
 			'Linked Data'
 		]].copy()
 		return new_frame.selected_data()
+
+# TODO Need to make code more robust, e.g. error handling and other scenarios for the import.
+# TODO Need to consider data integrity issues (missing values, empty rows etc.
