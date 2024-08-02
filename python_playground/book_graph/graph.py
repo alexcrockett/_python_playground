@@ -1,14 +1,15 @@
 # The purpose of this file is to manage schema for the graph
 import pandas as pd
 import csv_import
+from pkgutil import get_data
 from neomodel import (StructuredNode, StringProperty, RelationshipFrom, IntegerProperty, RelationshipTo)
 
 
 class CSVHandler:
 	def __init__(self):
-		# Assuming CSV class has a method or property to get the DataFrame
 		self.csv_instance = csv_import.CSV()
-		self.data_for_graph = self.csv_instance.get_data()  # Method to get data
+		self.data_for_graph = self.csv_instance
+		self.data_for_graph = pd.DataFrame()
 
 	def content_parser(self):
 		# Initialize lists to collect data
