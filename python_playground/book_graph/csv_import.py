@@ -20,13 +20,10 @@ class CSV:
 			'ISBN',
 			'ISBN13',
 			'Publisher',
-			'Number of Pages',
 			'Original Publication Year',
 			'Summary',
 			'Topics',
 			'Genres',
-			'Text',
-			'Linked Data'
 		]].copy()
 		return new_frame.selected_data()
 
