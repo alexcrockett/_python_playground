@@ -1,14 +1,15 @@
 import pandas as pd
+from pkgutil import get_data
 
-
+# Initialize data collection for csv data
 class GAIDATA:
 	def __init__(self):
 		self.csv_source_path = 'databases/raw_library.csv'
 		self.df_csv = pd.read_csv(self.csv_source_path)
-		self.df_csv = None
 
-	def initial_csv_dataframe(self, df_csv):
-		csv_data = df_csv[[
+# Initial dataframe to parse out unwanted columns
+	def initial_csv_dataframe(self):
+		csv_data = self.df_csv[[
 			'Title',
 			'type',
 			'Author',
@@ -24,10 +25,11 @@ class GAIDATA:
 		return csv_data
 
 
+# Build dictionary to abstract from initial dataframe
+# We want to do this to add data sources later on
 class DICTIONARY:
 	def __init__(self, csv_data):
 		self.csv_data_for_graph = csv_data
-		self.csv_data_for_graph = None
 
 	def dataframe_to_dict(self):
 		dict_content = {
@@ -45,11 +47,11 @@ class DICTIONARY:
 		return dict_content
 
 
+# Collect data in dataframe that will be used to populate nodes
 class CONTAINER:
 	def __init__(self, dict_content):
-		self.dict_content = dict_content
+		self.book_dataf = pd.DataFrame(dict_content)
 
-	def resource_dataframe(self, dict_content):
-		book_dataf = pd.DataFrame(dict_content)
-		return book_dataf
+	def resource_dataframe(self):
+		return self.book_dataf
 
