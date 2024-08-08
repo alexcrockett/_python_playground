@@ -1,12 +1,11 @@
 # The purpose of this file is to manage schema for the graph
 import pandas as pd
 from docutils.core import Publisher
-import import_data
-from neomodel import (StructuredNode)
 from neomodel import (RelationshipFrom, RelationshipTo)
 from neomodel import (StringProperty, IntegerProperty)
-from neomodel import (install_all_labels, config)
+from neomodel import (StructuredNode)
 
+import import_data
 
 gai_data = import_data.GAIDATA()
 csv_data = gai_data.initial_csv_dataframe()       # Call the method to get DataFrame
@@ -20,7 +19,7 @@ class HANDLER:
 		data_to_import = container.resource_dataframe()
 		pd.DataFrame(data_to_import)
 
-	def pass_to_nodes(self, data_to_import):
+	def pass_to_book(self, data_to_import):
 		for index, row in data_to_import.iterrows():
 			try:
 				book = Book(
@@ -30,17 +29,31 @@ class HANDLER:
 					publication_year=row['publication_years'],
 					summary=row['summaries']
 				).save()
-				author = Author(name=row['authors']).save()
-				publisher = Publisher(name=row['publisher']).save()
-				genre = Genre(name=row['genres']).save()
-				topic = Topics(name=row['topics']).save()
 				print(f"Book created: {book.title}")
 			except Exception as e:
 				print(f"Failed to create book for row {index}: {e}")
 
+	def pass_to_author(self, data_to_import):
+		for index, row in data_to_import.iterrows():
+			try:
+				author = Author(
+					name=row['authors'],
+					book=row['titles'],
+					topic=row['topics'],
+					genre=row['genres'],
+					publisher=row['publishers']
+				).save()
+				print(f"Book created: {index}")
+			except Exception as e:
+				print(f"Failed to create book for row {index}: {e}")
 
-config.DATABASE_URL = 'bolt://neo4j:gai_1872@@localhost:7687'
-config.DATABASE_NAME = 'gai'
+	def pass_to_publisher(self, data_to_import):
+		for index, row in data_to_import.iterrows():
+			try:
+				publisher = Publisher(name=row['publisher']).save()
+				print(f"Book created: {index}")
+			except Exception as e:
+				print(f"Failed to create book for row {index}: {e}")
 
 
 class Book(StructuredNode):
@@ -48,60 +61,32 @@ class Book(StructuredNode):
 	isbn = StringProperty(unique_index=True)
 	isbn13 = StringProperty(unique_index=True)
 	publication_year = IntegerProperty()
-	summary = StringProperty()
-	topics = RelationshipTo('Topics', 'EXAMPLE_OF')
-	genres = RelationshipFrom('Genre', 'EXAMPLE_OF')
-	authors = RelationshipFrom('Author', 'AUTHORED')
+	author = RelationshipFrom('Author', 'AUTHORED')
 	additional_authors = RelationshipFrom('Author', 'AUTHORED')  # TODO create additional authors
 	publisher = RelationshipTo('Publisher', 'PUBLISHED')
 
 
 class Author(StructuredNode):
 	name = StringProperty(unique_index=True, required=True)
-	books = RelationshipTo('Book', 'AUTHORED')
-	writer_of = RelationshipTo('Genres', 'INTERESTED_IN')
-	interests = RelationshipTo('Topics', 'INTERESTED_IN')
+	book = RelationshipTo('Book', 'AUTHORED')
 	publisher = RelationshipFrom('Publisher', 'PUBLISHED')
 
 
 class Publisher(StructuredNode):
 	name = StringProperty(unique_index=True)
-	books = RelationshipFrom(Book, 'PUBLISHED')
-	authors = RelationshipTo('Author', 'Published')
-
-
-class Genre(StructuredNode):
-	name = StringProperty(unique_index=True)
-	books = RelationshipTo(Book, 'EXAMPLE_OF')
-	authors = RelationshipFrom(Author, 'INTERESTED_IN')
-	topics = RelationshipTo('Topics', 'EXAMPLE_OF')
-
-
-class Topics(StructuredNode):
-	name = StringProperty(unique_index=True)
-	examples = RelationshipTo(Book, 'EXAMPLE_OF')
-	authors = RelationshipFrom(Author, 'INTERESTED_IN')
-	genres = RelationshipFrom(Genre, 'EXAMPLE_OF')
+	book = RelationshipFrom(Book, 'PUBLISHED')
+	author = RelationshipTo('Author', 'Published')
 
 
 class CONNECTIONS:
-	def __init__(self, Book, Author, Publisher, Genre, Topics):
-		self.Book = Book
-		self.Author = Author
-		self.Publisher = Publisher
-		self.Genre = Genre
-		self.Topics = Topics
+	def __init__(self, book, author, publisher):
+		self.Publisher = publisher
+		self.Book = book
+		self.Author = author
 
-	def connections(self, book, author, publisher, genre, topic):
-		author.books.connect(book)
-		publisher.books.connect(book)
-		book.genres.connect(genre)
-		book.topics.connect(topic)
-		author.writer_of.connect(genre)
-		author.interests.connect(topic)
-		genre.authors.connect(author)
-		topic.authors.connect(author)
-		topic.genres.connect(genre)
+	def connections(self, book, author, publisher):
+		author.book.connect(Book)
+		publisher.book.connect(Book)
+		book.author.connect(Author)
+		book.publisher.connect(Publisher)
 
-
-install_all_labels()
